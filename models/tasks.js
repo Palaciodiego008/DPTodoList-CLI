@@ -50,17 +50,17 @@ class Tasks {
             const { desc, completedAt } = task;
             const status = (completedAt) ? 'Completed'.green : 'Pending'.red;
 
-            if (completed && completedAt) {              
+            if (completed && completedAt) {
                 counter += 1;
                 console.log(`${(counter + '.').green} ${desc} :: ${completedAt.green}`);
-                
+
             }
 
             if (!completed && !completedAt) {
                 counter += 1;
                 console.log(`${(counter + '.').green} ${desc} :: ${status}`);
             }
-                
+
 
         })
     }
@@ -71,7 +71,24 @@ class Tasks {
             delete this._list[id];
         }
     }
-    
+
+    toggleCompleted(ids = []) {
+        ids.forEach(id => {
+            const task = this._list[id];
+            if (!task.completedAt) {
+                task.completedAt = new Date().toISOString();
+            }
+        })
+
+        this.listArr.forEach(task => {
+            if (!ids.includes(task.id)) {
+                this._list[task.id].completedAt = null;
+            }
+
+        })
+
+
+    }
 
 
 }

@@ -4,6 +4,7 @@ import {
     readInput,
     listTasksDelete,
     confirm,
+    showListCheckList,
 } from './helpers/inquirer.js';
 
 import Tasks from './models/tasks.js';
@@ -42,12 +43,19 @@ const main = async () => {
             case '4':
                 tasks.listPendingCompleted(false);    
                 break;
+             case '5':
+                const ids = await showListCheckList(tasks.listArr);
+                tasks.toggleCompleted(ids);
+                break;
             case '6':
                 const id = await listTasksDelete(tasks.listArr);
-                const ok = await confirm('Are you sure?');
-                if (ok) 
-                    tasks.deleteTask(id);
-                    console.log('Task deleted');
+                if (id !== '0') {
+                    const ok = await confirm('Are you sure?');
+                    if (ok) 
+                        tasks.deleteTask(id);
+                        console.log('Task deleted');
+                }
+                
             default:
                 break;
         }
