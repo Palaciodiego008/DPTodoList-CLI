@@ -20,7 +20,7 @@ const showMenu = () => {
         // Read user input
         const readLine = require('readline').createInterface({
             input: process.stdin,
-            process: process.stdout
+            output: process.stdout
         })
 
         readLine.question('Select an option:', (opt) => {
