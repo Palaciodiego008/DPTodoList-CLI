@@ -67,6 +67,7 @@ class Tasks {
 
     deleteTask(id = '') {
         if (this._list[id]) {
+            // using operator delete to delete a property from an object 
             delete this._list[id];
         }
     }
