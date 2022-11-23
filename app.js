@@ -1,17 +1,25 @@
-import colors from 'colors';
 import { 
     inquirerMenu, 
     pause,
     readInput
 } from './helpers/inquirer.js';
-//import Task from './models/task.js';
-import Tasks from './models/tasks.js';
 
+import Tasks from './models/tasks.js';
+import { saveDB, readDB} from './helpers/interactionDB.js';
 
 const main = async () => {
 
     let opt = '';
     const tasks = new Tasks();
+
+    const tasksDB = readDB();
+
+    if (tasksDB) {
+        tasks.loadTaskFromArray(tasksDB);
+    }
+
+    await pause();
+    
 
     do {
         // Print the menu
@@ -24,10 +32,12 @@ const main = async () => {
                 tasks.createTask(desc);
                 break;
             case '2':
-                console.log(tasks.listArr);
+                tasks.completeList();
             default:
                 break;
         }
+
+        saveDB(tasks.listArr);
 
         await pause();
 

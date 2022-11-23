@@ -28,8 +28,23 @@ class Tasks {
         
         }    
 
-       
-        
+       loadTaskFromArray(tasks = []) {
+            tasks.forEach(task => {
+                this._list[task.id] = task;
+            })
+       }
+
+
+       completeList() {
+        console.log();
+        this.listArr.forEach((task, i) => {
+            const idx = `${i + 1}`.green;
+            const {desc, completedAt} = task;
+            const status = (completedAt) ? 'Completed'.green : 'Pending'.red;
+            console.log(`${idx} ${desc} :: ${status}`);
+        })
+
+       }        
        
         
     
