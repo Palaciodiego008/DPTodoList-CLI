@@ -1,7 +1,4 @@
 import Task from './task.js';
-
-
-
 class Tasks {
 
     _list = {};
@@ -67,6 +64,13 @@ class Tasks {
 
         })
     }
+
+    deleteTask(id = '') {
+        if (this._list[id]) {
+            delete this._list[id];
+        }
+    }
+    
 
 
 }
