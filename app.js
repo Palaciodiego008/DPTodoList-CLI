@@ -15,8 +15,6 @@ const main = async () => {
     do {
         opt = await inquirerMenu();
         console.log({opt});
-  
-       // if (opt !== '0') await pause();
 
     } while (opt !== '0');
 

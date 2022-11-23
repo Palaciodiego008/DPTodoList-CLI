@@ -49,9 +49,9 @@ const inquirerMenu = async() => {
     console.log('  Select an option'.white );
     console.log('==========================\n'.green);
 
-    const { opcion } = await inquirer.prompt(questions);
+    const opt = await inquirer.prompt(questions);
 
-    return opcion;
+    return opt
 }
 
 const pause = async() => {
