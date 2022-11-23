@@ -32,7 +32,14 @@ const main = async () => {
                 tasks.createTask(desc);
                 break;
             case '2':
-                tasks.completeList();
+                tasks.completeList();             
+                break;
+            case '3':
+                tasks.listPendingCompleted();
+               break;
+            case '4':
+                tasks.listPendingCompleted(false);    
+                break;
             default:
                 break;
         }
