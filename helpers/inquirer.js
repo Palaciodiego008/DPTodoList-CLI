@@ -9,58 +9,58 @@ const questions = [
         choices: [
             {
                 value: '1',
-                name: `${ '1.'.green } Create task`
+                name: `${'1.'.green} Create task`
             },
             {
                 value: '2',
-                name: `${ '2.'.green } List tasks`
+                name: `${'2.'.green} List tasks`
             },
             {
                 value: '3',
-                name: `${ '3.'.green } List completed tasks`
+                name: `${'3.'.green} List completed tasks`
             },
             {
                 value: '4',
-                name: `${ '4.'.green } List pending tasks`
+                name: `${'4.'.green} List pending tasks`
             },
             {
                 value: '5',
-                name: `${ '5.'.green } Complete task(s)`
+                name: `${'5.'.green} Complete task(s)`
             },
             {
                 value: '6',
-                name: `${ '6.'.green } Delete task`
+                name: `${'6.'.green} Delete task`
             },
             {
                 value: '0',
-                name: `${ '0.'.green } Exit`
+                name: `${'0.'.green} Exit`
             },
-            
+
         ]
     }
 ];
 
 
 
-const inquirerMenu = async() => {
+const inquirerMenu = async () => {
 
-   // console.clear();
+    // console.clear();
     console.log('=========================='.green);
-    console.log('  Select an option'.white );
+    console.log('  Select an option'.white);
     console.log('==========================\n'.green);
 
-    const {option} = await inquirer.prompt(questions);
-    
+    const { option } = await inquirer.prompt(questions);
+
     return option;
 }
 
-const pause = async() => {
-    
+const pause = async () => {
+
     const question = [
         {
             type: 'input',
             name: 'enter',
-            message: `Press ${ 'enter'.green } to continue`
+            message: `Press ${'enter'.green} to continue`
         }
     ];
 
@@ -70,7 +70,7 @@ const pause = async() => {
 
 
 
-const readInput = async(message) => {
+const readInput = async (message) => {
     const question = [
         {
             type: 'input',
@@ -84,19 +84,19 @@ const readInput = async(message) => {
             }
         },
     ]
-    const {desc} = await inquirer.prompt(question);
+    const { desc } = await inquirer.prompt(question);
     return desc;
 }
 
 
-const listTasksDelete = async(tasks = []) => {
+const listTasksDelete = async (tasks = []) => {
     const choices = tasks.map((task, i) => {
         const idx = `${i + 1}.`.green;
         return {
             value: task.id,
             name: `${idx} ${task.desc}`
         }
-        
+
     })
 
     choices.unshift({
@@ -113,16 +113,16 @@ const listTasksDelete = async(tasks = []) => {
             message: 'Delete',
             choices
         },
-    ] 
+    ]
 
-    const {id} = await inquirer.prompt(questions);
+    const { id } = await inquirer.prompt(questions);
     return id;
-   
+
 }
 
-const confirm = async(message) => {
+const confirm = async (message) => {
 
-    
+
     const question = [
         {
             type: 'confirm',
@@ -131,14 +131,14 @@ const confirm = async(message) => {
         }
     ];
 
-    const {ok} = await inquirer.prompt(question);
+    const { ok } = await inquirer.prompt(question);
     return ok;
 }
 
 
 
 
-const showListCheckList = async(tasks = []) => {
+const showListCheckList = async (tasks = []) => {
 
     const choices = tasks.map((task, i) => {
 
@@ -149,9 +149,9 @@ const showListCheckList = async(tasks = []) => {
             checked: (task.completedAt) ? true : false,
         }
 
-        
+
     })
-    
+
 
     const question = [
         {
@@ -160,11 +160,11 @@ const showListCheckList = async(tasks = []) => {
             message: 'Select',
             choices
         },
-    ] 
+    ]
 
-    const {ids } = await inquirer.prompt(question);
+    const { ids } = await inquirer.prompt(question);
     return ids;
-   
+
 }
 
 
@@ -175,6 +175,6 @@ export {
     pause,
     readInput,
     listTasksDelete,
-    confirm, 
+    confirm,
     showListCheckList
 }

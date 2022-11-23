@@ -1,5 +1,5 @@
-import { 
-    inquirerMenu, 
+import {
+    inquirerMenu,
     pause,
     readInput,
     listTasksDelete,
@@ -8,7 +8,7 @@ import {
 } from './helpers/inquirer.js';
 
 import Tasks from './models/tasks.js';
-import { saveDB, readDB} from './helpers/interactionDB.js';
+import { saveDB, readDB } from './helpers/interactionDB.js';
 
 const main = async () => {
 
@@ -22,12 +22,12 @@ const main = async () => {
     }
 
     await pause();
-    
+
 
     do {
         // Print the menu
         opt = await inquirerMenu();
-    
+
         switch (opt) {
             case '1':
                 // Create option
@@ -35,15 +35,15 @@ const main = async () => {
                 tasks.createTask(desc);
                 break;
             case '2':
-                tasks.completeList();             
+                tasks.completeList();
                 break;
             case '3':
                 tasks.listPendingCompleted();
-               break;
-            case '4':
-                tasks.listPendingCompleted(false);    
                 break;
-             case '5':
+            case '4':
+                tasks.listPendingCompleted(false);
+                break;
+            case '5':
                 const ids = await showListCheckList(tasks.listArr);
                 tasks.toggleCompleted(ids);
                 break;
@@ -51,11 +51,11 @@ const main = async () => {
                 const id = await listTasksDelete(tasks.listArr);
                 if (id !== '0') {
                     const ok = await confirm('Are you sure?');
-                    if (ok) 
+                    if (ok)
                         tasks.deleteTask(id);
-                        console.log('Task deleted');
+                    console.log('Task deleted');
                 }
-                
+
             default:
                 break;
         }
