@@ -53,7 +53,7 @@ const main = async () => {
                     const ok = await confirm('Are you sure?');
                     if (ok)
                         tasks.deleteTask(id);
-                    console.log('Task deleted');
+                        console.log('Task deleted');
                 }
 
             default:
